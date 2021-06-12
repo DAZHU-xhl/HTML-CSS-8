@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: inline-flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            flex-basis: 50%;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #181818;
+            width: 100%;
+            color: white;
+        }
+        
+        .container>div:nth-child(1) {
+            background-image: url(images/logo.jpg);
+            width: 106px;
+            height: 50px;
+        }
+        
+        .container>div:nth-child(2) {
+            color: #ffc81c;
+            font-size: 17px;
+        }
+        
+        .container>div:nth-child(6),
+        .container>div:nth-child(7),
+        .container>div:nth-child(8),
+        .container>div:nth-child(9) {
+            display: inline-flex;
+            align-items: center;
+            font-size: 13px;
+            color: #d1d1d1;
+        }
+        
+        .container>div:nth-child(6)>div:nth-child(1),
+        .container>div:nth-child(7)>div:nth-child(1),
+        .container>div:nth-child(8)>div:nth-child(1),
+        .container>div:nth-child(9)>div:nth-child(1) {
+            background-image: url(images/button1.png);
+            width: 15px;
+            height: 15px;
+            background-position: -230px -26px;
+        }
+        
+        .container>div:nth-child(12) {
+            background-image: url(images/button1.png);
+            width: 8px;
+            height: 4px;
+            background-position: -34px -96px;
+        }
+        
+        .container>div:nth-child(13) {
+            background-image: url(images/search.png);
+            width: 180px;
+            height: 25px;
+            font-size: 10px;
+            line-height: 25px;
+            color: #757575;
+        }
+        
+        #infor {
+            float: left;
+            width: 53%;
+            text-align: center;
+            height: 800px;
+            margin: 50px auto;
+        }
+        
+        #infor>div:nth-child(1) {
+            font-size: 35px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+        
+        #infor>div:nth-child(2)>p {
+            display: inline-block;
+        }
+        
+        .yellow1 {
+            color: #d99600;
+        }
+        
+        .yellow2 {
+            color: #d99600;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .comments {
+            display: inline-block;
+            background-image: url(images/comments.jpg);
+            width: 15px;
+            height: 15px;
+            background-size: 15px 15px;
+        }
+        
+        #infor>div:nth-child(3) {
+            border-bottom: 2px #eaeaea solid;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        #infor>div:nth-child(4) {
+            height: 400px;
+            padding-bottom: 150px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            line-height: 250%;
+            font-size: 18px;
+        }
+        
+        #infor>div:nth-child(4)::-webkit-scrollbar {
+            width: 10px;
+            height: 1px;
+        }
+        
+        #infor>div:nth-child(4)::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: #cccccc;
+        }
+        
+        #infor,
+        #cartoon {
+            display: inline-block;
+        }
+        
+        #cartoon {
+            float: right;
+            width: 43%;
+            height: 800px;
+            margin: 50px auto;
+            margin-top: 50px;
+        }
+        
+        .around {
+            background-image: url(images/cartoon.jpg);
+            width: 300px;
+            height: 300px;
+            background-size: 300px 300px;
+            border-radius: 50%;
+            margin-left: 100px;
+            transition-property: all;
+            transition-duration: 2s;
+            transform: rotate(0deg);
+        }
+        
+        @-webkit-keyframes rotation {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        .around_play {
+            background-image: url(images/cartoon.jpg);
+            width: 300px;
+            height: 300px;
+            background-size: 300px 300px;
+            border-radius: 50%;
+            margin-left: 100px;
+            -webkit-transform: rotate(180deg);
+            animation: rotation 10s linear infinite;
+            -moz-animation: rotation 10s linear infinite;
+            -webkit-animation: rotation 10s linear infinite;
+            -o-animation: rotation 10s linear infinite;
+            border-radius: 250px;
+        }
+        
+        #cartoon>div:nth-child(2) {
+            position: relative;
+            top: 50px;
+        }
+        
+        .play {
+            background-image: url(images/button2.jpg);
+            width: 40px;
+            height: 40px;
+            background-position-x: -110px;
+        }
+        
+        .play:hover {
+            background-image: url(images/button2.jpg);
+            width: 40px;
+            height: 40px;
+            background-position-x: -162px;
+        }
+        
+        .zan {
+            background-image: url(images/button2.jpg);
+            width: 40px;
+            height: 40px;
+            background-position-x: -207px;
+        }
+        
+        .zan:hover {
+            background-image: url(images/button2.jpg);
+            width: 40px;
+            height: 40px;
+            background-position-x: -207px;
+            background-position-y: -48px;
+        }
+        
+        #cartoon>div:nth-child(2)>div:nth-child(2) {
+            height: 5px;
+            width: 400px;
+            position: relative;
+            top: -23px;
+            left: 60px;
+            background-color: #cccccc;
+        }
+        
+        .prograssBar {
+            width: 0px;
+            height: 4px;
+            background: #ffcd2d;
+        }
+        /* 进度条变色 */
+        
+        #wp_processBtn {
+            width: 10px;
+            height: 10px;
+            background-image: url(images/button1.png);
+            background-position: 0 -128px;
+            position: absolute;
+            top: -3px;
+        }
+        
+        #time {
+            display: inline-block;
+            position: relative;
+            top: -37px;
+            left: 480px;
+            color: #999999;
+        }
+        
+        .open {
+            background-image: url(images/button2.jpg);
+            display: inline-block;
+            background-position: -44px 0;
+            width: 20px;
+            height: 16px;
+            position: relative;
+            top: -35px;
+            left: 490px;
+        }
+        
+        .open:hover {
+            background-image: url(images/button2.jpg);
+            display: inline-block;
+            background-position: -69px 0;
+            width: 20px;
+            height: 16px;
+            position: relative;
+            top: -35px;
+            left: 490px;
+        }
+        
+        .close {
+            background-color: #333333;
+            background-image: url(images/button1.png);
+            display: inline-block;
+            background-position: -309px -129px;
+            width: 20px;
+            height: 16px;
+            position: relative;
+            top: -35px;
+            left: 490px;
+        }
+        
+        #cartoon>div:nth-child(3) {
+            background-image: url(images/button2.jpg);
+            background-position: 0px -48px;
+            width: 198px;
+            height: 40px;
+            position: relative;
+            top: 100px;
+            left: 175px;
+        }
+        
+        #cartoon>div:nth-child(3)>div:nth-child(1) {
+            background-image: url(images/button2.jpg);
+            width: 19px;
+            height: 18px;
+            position: relative;
+            top: 10px;
+            left: 30px;
+        }
+        
+        #cartoon>div:nth-child(3)>p {
+            position: relative;
+            top: -9px;
+            left: 55px;
+        }
+        
+        #down {
+            width: 800px;
+            height: 800px;
+            margin: 1000px auto;
+            margin-bottom: 20px;
+        }
+        
+        .down_one {
+            text-align: left;
+        }
+        
+        .hr1 {
+            margin: 20px 0;
+        }
+        
+        .word_little {
+            font-size: 10px;
+        }
+        
+        .head_pic1 {
+            background-image: url(images/郭子仪.jpg);
+            width: 70px;
+            height: 70px;
+            background-size: 70px 70px;
+            background-repeat: no-repeat;
+            float: left;
+        }
+        
+        .write {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        #write {
+            display: block;
+            resize: none;
+            padding: 7px;
+            width: 700px;
+            height: 120px;
+            font-size: 17px;
+        }
+        
+        .emoji {
+            background-image: url(images/commenticon.png);
+            display: inline-block;
+            width: 20px;
+            height: 19px;
+            margin-top: 15px;
+        }
+        
+        .submit {
+            float: right;
+            margin-top: 10px;
+        }
+        
+        #submit {
+            background-color: #fdba00;
+            color: white;
+            width: 80px;
+            height: 30px;
+        }
+        
+        .watch {
+            margin-top: 50px;
+        }
+        
+        .watch_left {
+            float: left;
+            margin-left: 20px;
+        }
+        
+        .watch_right {
+            float: right;
+        }
+        
+        .watch_right>a>div {
+            background-image: url(images/bg2.jpg);
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .watch_right>a>div:hover {
+            background-image: url(images/bg3.jpg);
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .hr1-3 {
+            text-align: right;
+            margin-top: -5px;
+            margin-bottom: 60px;
+        }
+        
+        .num1 {
+            width: 800px;
+            height: 100px;
+            border-bottom: 1px gray dashed;
+        }
+        
+        #No1 {
+            color: #d99600;
+            margin-bottom: 10px;
+        }
+        
+        #No2 {
+            font-size: 14px;
+        }
+        
+        #No3 {
+            margin-top: 30px;
+            font-size: 10px;
+        }
+        
+        .num2 {
+            width: 800px;
+            height: 120px;
+            border-bottom: 1px gray dashed;
+        }
+        
+        .head_pic2 {
+            float: left;
+            background-image: url(images/headshot.jpg);
+            width: 70px;
+            height: 70px;
+            background-size: 70px 70px;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+        }
+        
+        .watch_left2 {
+            float: left;
+            width: 715px;
+            height: 100px;
+            margin-top: 20px;
+            margin-left: 15px;
+        }
+        
+        .watch_right2 {
+            text-align: right;
+            float: right;
+            position: relative;
+            top: -100px;
+        }
+        
+        .watch_right2>a>div {
+            background-image: url(images/bg2.jpg);
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .watch_right2>a>div:hover {
+            background-image: url(images/bg3.jpg);
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .watch_right2>span,
+        .watch_right2>a>div {
+            position: relative;
+            top: 55px;
+        }
+        /* .hr2-3 {
+            text-align: right;
+            margin-top: 0px;
+            margin-bottom: 60px;
+        } */
+        
+        .num3 {
+            width: 800px;
+            height: 120px;
+            border-bottom: 1px gray dashed;
+        }
+        
+        .head_pic3 {
+            float: left;
+            background-image: url(images/headshot.jpg);
+            width: 70px;
+            height: 70px;
+            background-size: 70px 70px;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+        }
+        
+        .watch_left3 {
+            float: left;
+            width: 715px;
+            height: 100px;
+            margin-top: -20px;
+            margin-left: 15px;
+        }
+        
+        .watch_right3 {
+            text-align: right;
+            float: right;
+            position: relative;
+            top: -100px;
+        }
+        
+        .watch_right3>a>div {
+            background-image: url(images/bg2.jpg);
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .watch_right3>a>div:hover {
+            background-image: url(images/bg3.jpg);
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .watch_right3>span,
+        .watch_right3>a>div {
+            position: relative;
+            top: 48px;
+        }
+        
+        .page {
+            display: inline-block;
+            position: relative;
+            top: 50px;
+            width: 345px;
+            margin-left: 225px;
+        }
+        
+        .page>div {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            margin-left: 10px;
+        }
+        
+        .page>div:nth-child(1)>div {
+            display: inline-block;
+            background-image: url(images/prev.png);
+            width: 6px;
+            height: 11px;
+        }
+        
+        .page>div:nth-child(7)>div {
+            display: inline-block;
+            background-image: url(images/next.png);
+            width: 6px;
+            height: 11px;
+        }
+        
+        .page>div:nth-child(2) {
+            color: white;
+        }
+        
+        .page>div:nth-child(1),
+        .page>div:nth-child(3),
+        .page>div:nth-child(4),
+        .page>div:nth-child(6),
+        .page>div:nth-child(7) {
+            background-color: #ededed;
+            border-radius: 50%;
+        }
+        
+        .page>div:nth-child(2) {
+            background-color: #feba00;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <audio autoplay="autoplay" id="mymusic">
+        <source src="images/2.mp3"></source>
+    </audio>
+    <div id="up">
+        <div class="container">
+            <div id="1" padding-left="500px"></div>
+            <div id="2">首页</div>
+            <div id="3">榜单</div>
+            <div id="4">歌手</div>
+            <div id="5">下载酷我客户端</div>
+            <div id="6">
+                <div></div>
+                <div>美女秀</div>
+            </div>
+            <div id="7">
+                <div></div>
+                <div>酷我耳机</div>
+            </div>
+
+            <div id="8">
+                <div></div>
+                <div>VIP会员</div>
+            </div>
+            <div id="9">
+                <div></div>
+                <div>i听</div>
+            </div>
+            <div id="10">更多服务</div>
+            <div id="11">登录</div>
+            <div id="12">
+                <!-- 箭头 -->
+            </div>
+            <div id="13">
+                <!-- 搜索 -->&nbsp&nbsp&nbsp&nbsp找到好音乐
+            </div>
+        </div>
+        <div id="infor">
+            <div>喜羊羊</div>
+            <div>
+                <p>专辑：</p>
+                <p class="yellow1">儿歌大全</p>
+                &nbsp&nbsp&nbsp
+                <p>歌手：</p>
+                <p class="yellow1">华语群星</p>
+                &nbsp&nbsp&nbsp
+                <p>分享</p>
+
+
+                &nbsp
+                <div class="comments"></div>
+                &nbsp
+                <p class="yellow1">评论</p>
+            </div>
+            <div>
+                上传时间：2015-10-02 歌曲来源：民大相思湖网球社
+            </div>
+            <div>
+                <p>喜羊羊&nbsp&nbsp美羊羊&nbsp&nbsp懒羊羊&nbsp&nbsp沸羊羊</p>
+                <p>慢羊羊&nbsp&nbsp软绵绵&nbsp&nbsp红太狼&nbsp&nbsp灰太狼</p>
+                <p>别看我只是一只羊</p>
+                <p>绿草因为我变得更香</p>
+                <p>天空因为我变得更蓝</p>
+                <p>白云因为我变得柔软</p>
+                <p>别看我只是一只羊</p>
+                <p>羊儿的聪明难以想象</p>
+                <p>天再高心情一样奔放</p>
+                <p>每天都追赶太阳</p>
+                <p class="yellow2">有什么难题&nbsp&nbsp去牵绊我&nbsp&nbsp都不会去心伤</p>
+                <p>有什么危险&nbsp&nbsp在我面前&nbsp&nbsp也不会去慌乱</p>
+                <p>就算有狼群&nbsp&nbsp把我追捕&nbsp&nbsp也当作游戏一场</p>
+                <p>在什么时间&nbsp&nbsp都爱开心&nbsp&nbsp笑容都会飞翔</p>
+                <p>就算会摔倒&nbsp&nbsp站得起来&nbsp&nbsp永远不会沮丧</p>
+                <p>在所有天气&nbsp&nbsp拥有叫人&nbsp&nbsp大笑的力量</p>
+                <p>虽然我只是羊</p>
+                <p>喜羊羊&nbsp&nbsp美羊羊&nbsp&nbsp懒羊羊&nbsp&nbsp沸羊羊</p>
+                <p>慢羊羊&nbsp&nbsp软绵绵&nbsp&nbsp红太狼&nbsp&nbsp灰太狼</p>
+                <p>别看我只是一只羊</p>
+                <p>绿草因为我变得更香</p>
+                <p>天空因为我变得更蓝</p>
+                <p>白云因为我变得柔软</p>
+                <p>有什么难题&nbsp&nbsp去牵绊我&nbsp&nbsp都不会去心伤</p>
+                <p>有什么危险&nbsp&nbsp在我面前&nbsp&nbsp也不会去慌乱</p>
+                <p>就算有狼群&nbsp&nbsp把我追捕&nbsp&nbsp也当作游戏一场</p>
+                <p>在什么时间&nbsp&nbsp都爱开心&nbsp&nbsp笑容都会飞翔</p>
+                <p>就算会摔倒&nbsp&nbsp站得起来&nbsp&nbsp永远不会沮丧</p>
+                <p>在所有天气&nbsp&nbsp拥有叫人&nbsp&nbsp大笑的力量</p>
+                <p>虽然我只是羊</p>
+                <p>虽然我只是羊</p>
+                <p>喜羊羊&nbsp&nbsp美羊羊&nbsp&nbsp懒羊羊&nbsp&nbsp沸羊羊</p>
+                <p>慢羊羊&nbsp&nbsp软绵绵&nbsp&nbsp红太狼&nbsp&nbsp灰太狼</p>
+            </div>
+        </div>
+        <div id="cartoon">
+            <div id="around_cartoon" class="around">
+                <!-- （1）旋转 -->
+            </div>
+            <div>
+                <!-- （2）播放 -->
+                <div id="play" class="play">
+                    <!-- 1.播放暂停 -->
+                </div>
+                <div id="prograssBar">
+                    <!-- 2.进度条 -->
+                    <div id="wp_bufBar">
+                        <div class="prograssBar" id="wp_processBar"></div>
+                        <a href="##" class="schedule_btn" id="wp_processBtn" style="left: 0;"></a>
+                    </div>
+                </div>
+
+                <div id="time">
+                    00:00
+                    <!-- 3.时间 -->
+                </div>
+                <div id="wp_mute" class="open">
+                    <!-- 4.静音 -->
+                </div>
+            </div>
+
+            <div>
+                <!-- （3）下载 -->
+                <div></div>
+                <p font-color="black">免费下载这首歌</p>
+            </div>
+            <div>
+                <!-- （4）评论 -->
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="down">
+        <div class="down_one">
+            &nbsp&nbsp&nbsp&nbsp
+            <span class="word_big">评论</span> &nbsp
+            <span class="word_little">1703条评论</span>
+        </div>
+        <hr class="hr1">
+
+        <!-- 头像 -->
+        <div class="head_pic1"></div>
+        <!-- 写评论 -->
+        <div class="write">
+            <textarea id="write" placeholder=" 分享你的音乐见解"></textarea>
+            <!-- 表情 -->
+            <div class="emoji"></div>
+            <div class="submit">
+                <span>已输入<span>0</span>个字</span>
+                <button id="submit">评论
+            </div>
+        </div>
+        <!-- 看评论 -->
+        <div class="watch">
+            <p class="word_big">
+                &nbsp&nbsp&nbsp&nbsp
+                精彩评论
+            </p>
+            <hr class="hr1">
+
+            
+            <div class="num1">
+                <div class="head_pic1"></div>
+                <div class="watch_left">
+                    <p id="No1">郭子仪</p>
+                    <p id="No2">Too</p>
+                    <p id="No3">2017-06-10  07:00:42</p>
+                </div>
+                <div class="watch_right">
+                    <p class="hr1-3">分享</p>
+                    <span>删除&nbsp&nbsp163&nbsp&nbsp</span>
+                    <a><div></div></a>
+                    <span>&nbsp&nbsp回复</span>
+                </div>
+            </div>
+            
+            
+            <div class="num2">
+                <div class="head_pic2"></div>
+                <div class="watch_left2">
+                    <p id="No1">Forget</p>
+                    <p id="No2">我喜欢很多歌曲，喜欢过很多唱歌的人，那些有时不是我的爱好，已经成为了我那段青春的回忆，我现在可以很骄傲</p>
+                    <p id="No3">2017-06-03 16:58:02</p>
+                </div>
+                <div class="watch_right2">
+                    <p class="hr2-3">分享</p>
+                    <span>&nbsp&nbsp149&nbsp&nbsp</span>
+                    <a><div></div></a>
+                    <span>&nbsp&nbsp回复</span>
+                </div>
+            </div>
+            <div class="num3">
+                <div class="head_pic3"></div>
+                <div class="watch_left3">
+                    <p id="No1">亚里士多德</p>
+                    <p id="No2">学校晚会表演这歌</p>
+                    <p id="No3">2017-05-14 16:16:53</p>
+                </div>
+                <div class="watch_right3">
+                    <p class="hr3-3">分享</p>
+                    <span>&nbsp&nbsp106&nbsp&nbsp</span>
+                    <a><div></div></a>
+                    <span>&nbsp&nbsp回复</span>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <div>
+                <div></div>
+            </div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>…</div>
+            <div>17</div>
+            <div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var flag = 0;
+        var play = document.getElementById("play");
+        var sound = document.getElementById("wp_mute");
+        var time = document.getElementById("time");
+        var bar = document.getElementById("wp_bufBar");
+        var btn = document.getElementById("wp_processBtn");
+        var cartoon=document.getElementById("around_cartoon");
+        var tim = setInterval(function() {
+            if (mymusic.currentTime < 10) {
+                time.innerHTML = "00:0" + Math.floor(mymusic.currentTime);
+            } else if (mymusic.currentTime < 60) {
+                time.innerHTML = "00:" + Math.floor(mymusic.currentTime);
+            } else {
+                var min = parseInt(mymusic.currentTime / 60);
+                var sec = mymusic.currentTime - min * 60;
+                if (min < 10) {
+                    if (sec < 10) {
+                        time.innerHTML = "0" + min + ":" + "0" + parseInt(sec);
+                    } else {
+                        time.innerHTML = "0" + min + ":" + parseInt(sec);
+                    }
+                } else {
+                    if (sec < 10) {
+                        time.innerHTML = min + ":" + "0" + parseInt(sec);
+                    } else {
+                        time.innerHTML = min + ":" + parseInt(sec);
+                    }
+                }
+            }
+            btn.style.left = (mymusic.currentTime) * 100 / (mymusic.duration) + "%";
+            wp_bufBar.style.width = (mymusic.currentTime) * 100 / (mymusic.duration) + "%";
+            wp_processBar.style.width = "auto";
+        }, 100)
+        play.onclick = function() {
+            if (flag % 2 == 0) {
+                play.className = "zan";
+                cartoon.className="around_play";
+                mymusic.play();
+                flag++;
+            } else {
+                play.className = "play";
+                cartoon.className="around";
+                mymusic.pause();
+                flag++;
+            }
+        }
+        sound.onclick = function() {
+            if (mymusic.muted == true) {
+                mymusic.muted = false;
+                sound.className = "open";
+
+            } else {
+                mymusic.muted = true;
+                sound.className = "close";
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
